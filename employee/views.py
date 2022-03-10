@@ -15,7 +15,7 @@ def emp(request):
     else:  
         form = EmployeeForm()  
     return render(request,'index.html',{'form':form})  
-def show(request):  
+def index(request):  
     employees = Employee.objects.all()  
     return render(request,"show.html",{'employees':employees})  
 def edit(request, id):  
@@ -26,10 +26,10 @@ def update(request, id):
     form = EmployeeForm(request.POST, instance = employee)  
     if form.is_valid():  
         form.save()  
-        return redirect("/show")  
+        return redirect("/")  
     return render(request, 'edit.html', {'employee': employee})  
 def destroy(request, id):  
     employee = Employee.objects.get(id=id)  
     employee.delete()  
-    return redirect("/show")
+    return redirect("/")
 # Create your views here.
